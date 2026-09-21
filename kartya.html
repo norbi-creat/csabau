@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miski Norbert | Csabau Komplex Kft. Digitális Névjegy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #123048;
+      --primary-dark: #0a1c2a;
+      --accent: #d4a359;
+      --accent-hover: #b8863b;
+      --bg: #0c1a26;
+      --card-bg: #ffffff;
+      --text-main: #1f2937;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(145deg, #091520 0%, #123048 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 14px;
+      color: var(--text-main);
+    }
+
+    .card-wrap {
+      width: 100%;
+      max-width: 440px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fejléc sáv */
+    .card-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      padding: 36px 20px 24px;
+      text-align: center;
+      color: #ffffff;
+      position: relative;
+    }
+
+    .logo-frame {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 16px;
+      border-radius: 18px;
+      background: #ffffff;
+      padding: 6px;
+      border: 3px solid var(--accent);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .logo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .person-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .person-role {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .company-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      margin-top: 10px;
+    }
+
+    /* Kártyatest */
+    .card-body {
+      padding: 24px 20px 30px;
+    }
+
+    /* Fő mentés gomb (vCard) */
+    .btn-save-contact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      background: var(--accent);
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 15px 20px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 20px rgba(212, 163, 89, 0.4);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-save-contact:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Elérhetőségek listája */
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+    }
+
+    .contact-link:hover {
+      background: #f1f5f9;
+      border-color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    .icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(18, 48, 72, 0.08);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-box svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .link-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .link-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .link-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      word-break: break-word;
+    }
+
+    /* Tevékenységi címkék */
+    .services-tag-wrap {
+      border-top: 1px solid var(--border);
+      padding-top: 18px;
+      margin-bottom: 22px;
+    }
+
+    .tags-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .tag {
+      background: #eef3f7;
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+
+    /* QR Kód és megosztás gombok */
+    .card-footer-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .action-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .action-btn:hover {
+      background: #f8fafc;
+      border-color: var(--primary);
+    }
+
+    /* QR Kód felugró ablak */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      padding: 28px 24px;
+      border-radius: 18px;
+      max-width: 320px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-box h4 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--primary);
+      margin-bottom: 14px;
+      font-size: 1.1rem;
+    }
+
+    .qr-img {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: block;
+    }
+
+    .modal-close-btn {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-wrap">
+    <!-- Fejléc -->
+    <div class="card-header">
+      <div class="logo-frame">
+        <img src="logo.png" alt="Csabau Logó" onerror="this.onerror=null; this.src='logo.jpg';" />
+      </div>
+      <h1 class="person-name">Miski Norbert</h1>
+      <div class="person-role">Projektmenedzser / Kivitelező</div>
+      <div class="company-title">CSABAU KOMPLEX KFT.</div>
+    </div>
+
+    <!-- Törzs -->
+    <div class="card-body">
+      <!-- 1 KATTINTÁSOS NÉVJEGY LETÖLTÉS TELEFONKÖNYVBE -->
+      <button class="btn-save-contact" onclick="downloadVCard()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        Mentés telefonkönyvbe (.vcf)
+      </button>
+
+      <!-- Elérhetőségek -->
+      <ul class="contact-list">
+        <li>
+          <a href="tel:+36706637608" class="contact-link">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <div class="link-details">
+              <span class="link-label">Telefon (Kattintásra hívás)</span>
+              <span class="link-value">06 70 663 7608</span>
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a href="mailto:miski.norbert@gmail.com" class="contact-link">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div class="link-details">
+              <span class="link-label">E-mail küldés</span>
+              <span class="link-value">miski.norbert@gmail.com</span>
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://maps.google.com/?q=3800+Szikszó,+Bem+József+utca+16" target="_blank" class="contact-link">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+            </div>
+            <div class="link-details">
+              <span class="link-label">Cím & Navigáció</span>
+              <span class="link-value">3800 Szikszó, Bem J. u. 16.</span>
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a href="index.html" class="contact-link">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </div>
+            <div class="link-details">
+              <span class="link-label">Hivatalos Weboldal</span>
+              <span class="link-value">Ugrás a weboldalra &rarr;</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Tevékenységi körök -->
+      <div class="services-tag-wrap">
+        <div class="tags-label">Szakterületeink</div>
+        <div class="tags-container">
+          <span class="tag">Festés & Glettelés</span>
+          <span class="tag">Szárazépítés</span>
+          <span class="tag">Hideg- és Melegburkolás</span>
+          <span class="tag">Akusztikus Falpanelek</span>
+          <span class="tag">R-Tile Padlórendszerek</span>
+        </div>
+      </div>
+
+      <!-- Két alsó akciógomb: QR kód és Linkmásolás -->
+      <div class="card-footer-btns">
+        <button class="action-btn" onclick="openQRModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 0h2v3h-2v-3zm2 3h3v2h-3v-2zm3 2h3v3h-3v-3zm-5 1h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
+          QR-kód
+        </button>
+        <button class="action-btn" onclick="copyCardLink()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          <span id="copyBtnText">Link másolása</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR KÓD FELUGRÓ ABLAK -->
+  <div class="modal-overlay" id="qrModal" onclick="closeQRModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <h4>Olvassa be a telefonjával!</h4>
+      <!-- Dinamikus QR kód generálás az aktuális linkre -->
+      <img id="qrImage" class="qr-img" src="" alt="Névjegy QR-kód" />
+      <button class="modal-close-btn" onclick="closeQRModal()">Bezárás</button>
+    </div>
+  </div>
+
+  <script>
+    // 1. vCard (.vcf) névjegy automatikus generálása és letöltése
+    function downloadVCard() {
+      const vcardData = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'N:Miski;Norbert;;;',
+        'FN:Miski Norbert',
+        'ORG:CSABAU KOMPLEX KFT.',
+        'TITLE:Projektmenedzser',
+        'TEL;TYPE=CELL,VOICE:+36706637608',
+        'EMAIL;TYPE=WORK,INTERNET:miski.norbert@gmail.com',
+        'ADR;TYPE=WORK:;;Bem József u. 16.;Szikszó;;3800;Magyarország',
+        'NOTE:Szobafestés, szárazépítés, burkolás, akusztikus falpanelek, R-tile kivitelezés.',
+        'END:VCARD'
+      ].join('\r\n');
+
+      const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'Miski_Norbert_Csabau.vcf');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // 2. Link másolása vágólapra
+    function copyCardLink() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        const btnText = document.getElementById('copyBtnText');
+        btnText.innerText = 'Kimásolva! ✓';
+        setTimeout(() => { btnText.innerText = 'Link másolása'; }, 2000);
+      });
+    }
+
+    // 3. QR Modal kezelése
+    function openQRModal() {
+      const currentUrl = encodeURIComponent(window.location.href);
+      document.getElementById('qrImage').src = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' + currentUrl;
+      document.getElementById('qrModal').style.display = 'flex';
+    }
+
+    function closeQRModal() {
+      document.getElementById('qrModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
