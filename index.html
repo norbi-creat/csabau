@@ -785,6 +785,160 @@
       }
     }
   </style>
+  <!-- CSABAU KOMPLEX - Tipográfia (Space Mono + Syne prémium alternatíva) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+<!-- CSABAU KOMPLEX - Helyi SEO & Strukturált Adatok -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": "https://csabau-komplex.onrender.com/#organization",
+  "name": "Csabau Komplex Kft.",
+  "alternateName": "Csabau Komplex Hideg- és Melegburkolás, Felújítás",
+  "legalName": "Csabau Komplex Kft.",
+  "url": "https://csabau-komplex.onrender.com",
+  "telephone": "+36706637608",
+  "email": "miski.norbert@gmail.com",
+  "taxID": "27118629-2-05",
+  "founder": {
+    "@type": "Person",
+    "name": "Miski Norbert Szabolcs"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Bem u. 16.",
+    "addressLocality": "Szikszó",
+    "postalCode": "3800",
+    "addressRegion": "Borsod-Abaúj-Zemplén",
+    "addressCountry": "HU"
+  },
+  "areaServed": ["Miskolc", "Szikszó", "Borsod-Abaúj-Zemplén vármegye"],
+  "priceRange": "$$$"
+}
+</script>
+
+<!-- CSABAU KOMPLEX - Lebegő Hívássáv Stílusok -->
+<style>
+  :root {
+    --ck-obsidian: #0C0D0E;
+    --ck-basalt: #1B1D20;
+    --ck-brass: #D4AF37;
+    --ck-brass-hover: #C5A059;
+    --ck-chalk: #F5F4F0;
+    --ck-gray: #8E8A83;
+  }
+
+  /* Mobil lebegő dokk konténer */
+  .ck-mobile-dock {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+    transform: translateY(110%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ck-mobile-dock.is-active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .ck-mobile-dock {
+      display: none !important;
+    }
+  }
+
+  .ck-dock-wrapper {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(27, 29, 32, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(142, 138, 131, 0.35);
+    padding: 8px;
+    display: flex;
+    gap: 8px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  }
+
+  .ck-btn-call {
+    flex: 1.1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--ck-brass);
+    color: var(--ck-obsidian);
+    text-decoration: none;
+    padding: 12px 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+
+  .ck-btn-call:active {
+    transform: scale(0.98);
+    background: var(--ck-brass-hover);
+  }
+
+  .ck-btn-quote {
+    flex: 0.9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--ck-obsidian);
+    color: var(--ck-chalk);
+    border: 1px solid rgba(142, 138, 131, 0.4);
+    text-decoration: none;
+    padding: 12px 10px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .ck-btn-quote:active {
+    background: #18191b;
+    border-color: var(--ck-brass);
+  }
+
+  .ck-dock-subtext {
+    margin-top: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ck-gray);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .ck-badge-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--ck-brass);
+    border-radius: 50%;
+    display: inline-block;
+  }
+</style>
 </head>
 <body>
 
