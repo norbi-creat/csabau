@@ -1737,12 +1737,12 @@
 
         if (typeof emailjs !== 'undefined') {
           // 1. Értesítés a csapatnak
-          emailjs.send("service_2r64fym", "template_qelblua", emailParams)
+          emailjs.send("service_2r64fym", "template_qelblua", emailParams, "zKQxWxFvpp6jfU2Ls")
             .then(() => console.log("Értesítés elküldve!"))
             .catch(err => console.error("Hiba admin küldésnél:", err));
 
           // 2. Visszaigazolás az ügyfélnek
-          emailjs.send("service_2r64fym", "template_snjkvmk", emailParams)
+          emailjs.send("service_2r64fym", "template_snjkvmk", emailParams, "zKQxWxFvpp6jfU2Ls")
             .then(() => console.log("Ügyfél visszaigazolás elküldve!"))
             .catch(err => console.error("Hiba ügyfél küldésnél:", err));
         }
