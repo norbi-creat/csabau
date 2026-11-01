@@ -125,7 +125,6 @@
       gap: 14px;
     }
 
-    /* NÉGYZETES LOGÓ TÁROLÓ (1:1) */
     .logo-box-square {
       width: 56px;
       height: 56px;
@@ -401,46 +400,296 @@
       line-height: 1.55;
     }
 
-    /* Kalkulátor modul */
-    .calc-container {
+    /* =========================================================
+       ESTIWISE-STÍLUSÚ INTERAKTÍV AJÁNLATKÉRŐ MODUL STÍLUSAI
+       ========================================================= */
+    .ew-calc-card {
       background: #ffffff;
       border-radius: var(--radius-lg);
       border: 1px solid var(--border);
       padding: 40px;
       box-shadow: var(--shadow-md);
-      max-width: 800px;
+      max-width: 860px;
       margin: 0 auto;
     }
 
-    .calc-grid {
+    /* Stepper sáv */
+    .ew-stepper {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 35px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 18px;
+      gap: 10px;
+    }
+    .ew-step {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+    .ew-step.active {
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .ew-step span {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      background: #ffffff;
+    }
+    .ew-step.active span {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    /* Lépések tartalma */
+    .ew-step-content {
+      display: none;
+    }
+    .ew-step-content.active {
+      display: block;
+      animation: ewFadeIn 0.3s ease;
+    }
+    @keyframes ewFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .ew-section-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    /* Szolgáltatásválasztó kártyák */
+    .ew-services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .ew-choice-card {
+      background: var(--bg-alt);
+      border: 2px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 16px 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .ew-choice-card:hover {
+      border-color: rgba(212, 163, 89, 0.4);
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+    .ew-choice-card.selected {
+      border-color: var(--accent);
+      background: #ffffff;
+      box-shadow: 0 4px 15px rgba(212, 163, 89, 0.2);
+    }
+    .ew-choice-card strong {
+      display: block;
+      color: var(--primary);
+      font-size: 0.92rem;
+      margin-bottom: 3px;
+    }
+    .ew-choice-card span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+      display: block;
+    }
+
+    /* Csúszka felület */
+    .ew-slider-box {
+      background: var(--bg-alt);
+      padding: 22px;
+      border-radius: var(--radius-md);
+      margin-bottom: 28px;
+      border: 1px solid var(--border);
+    }
+    .ew-slider-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .ew-slider-val {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .ew-slider-box input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* Upsell opciók */
+    .ew-addons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .ew-addon-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffffff;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 0.92rem;
+      color: var(--text);
+      transition: var(--transition);
+    }
+    .ew-addon-item:hover {
+      border-color: var(--accent);
+      background: var(--bg-alt);
+    }
+    .ew-addon-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    /* Lead Gate (2. lépés) */
+    .ew-gate-box {
+      background: var(--bg-alt);
+      border-radius: var(--radius-md);
+      padding: 30px;
+      border: 1px solid var(--border);
+    }
+    .ew-gate-box h3 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+    .ew-gate-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .ew-gate-inputs {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .ew-gate-inputs input {
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-size: 0.92rem;
+      font-family: inherit;
+    }
+    .ew-gate-inputs input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .ew-gate-privacy {
+      font-size: 0.78rem;
+      color: var(--text-muted);
       margin-bottom: 24px;
     }
 
-    .calc-range {
-      width: 100%;
-      accent-color: var(--accent);
-      margin: 12px 0;
-    }
-
-    .calc-result-box {
-      background: var(--bg-alt);
+    /* Eredmény oldal (3. lépés) */
+    .ew-result-box {
+      background: #ffffff;
       border-radius: var(--radius-md);
-      padding: 24px;
-      text-align: center;
-      border: 2px dashed var(--accent);
+      border: 2px solid var(--accent);
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
     }
-
-    .calc-price {
-      font-size: 2.2rem;
-      font-weight: 800;
+    .ew-result-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #2e7d32;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 12px;
+      background: #e8f5e9;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .ew-summary-table {
+      margin: 20px 0;
+      border-top: 1px solid var(--border);
+    }
+    .ew-table-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+    }
+    .ew-table-row span {
+      color: var(--text-muted);
+    }
+    .ew-table-row strong {
       color: var(--primary);
+    }
+    .ew-table-row.highlight-total {
+      font-size: 1.35rem;
+      color: var(--primary);
+      padding: 16px 0;
+      border-bottom: 2px solid var(--accent);
+    }
+    .ew-table-row.highlight-total strong {
+      color: var(--accent);
       font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+    }
+    .ew-disclaimer-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 16px 0 24px;
+      line-height: 1.45;
     }
 
-    /* PREMIUN REFERENCIA GALÉRIA SZEKCIÓ (AZ EREDETI STÍLUSHOZ ILLESZTVE) */
+    .ew-btn-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .ew-btn-row-final {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 650px) {
+      .ew-stepper { flex-direction: column; gap: 8px; }
+      .ew-gate-inputs { grid-template-columns: 1fr; }
+      .ew-btn-row-final { flex-direction: column; width: 100%; }
+      .ew-btn-row-final button, .ew-btn-row-final a { width: 100%; }
+    }
+
+    /* REFERENCIA GALÉRIA SZEKCIÓ */
     .gallery-filter-wrap {
       display: flex;
       justify-content: center;
@@ -765,7 +1014,7 @@
     }
 
     @media (max-width: 992px) {
-      .hero-grid, .contact-grid, .footer-top, .calc-grid {
+      .hero-grid, .contact-grid, .footer-top {
         grid-template-columns: 1fr;
       }
       .hero {
@@ -785,160 +1034,40 @@
       }
     }
   </style>
-  <!-- CSABAU KOMPLEX - Tipográfia (Space Mono + Syne prémium alternatíva) -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-<!-- CSABAU KOMPLEX - Helyi SEO & Strukturált Adatok -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "HomeAndConstructionBusiness",
-  "@id": "https://csabau-komplex.onrender.com/#organization",
-  "name": "Csabau Komplex Kft.",
-  "alternateName": "Csabau Komplex Hideg- és Melegburkolás, Felújítás",
-  "legalName": "Csabau Komplex Kft.",
-  "url": "https://csabau-komplex.onrender.com",
-  "telephone": "+36706637608",
-  "email": "miski.norbert@gmail.com",
-  "taxID": "27118629-2-05",
-  "founder": {
-    "@type": "Person",
-    "name": "Miski Norbert Szabolcs"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Bem u. 16.",
-    "addressLocality": "Szikszó",
-    "postalCode": "3800",
-    "addressRegion": "Borsod-Abaúj-Zemplén",
-    "addressCountry": "HU"
-  },
-  "areaServed": ["Miskolc", "Szikszó", "Borsod-Abaúj-Zemplén vármegye"],
-  "priceRange": "$$$"
-}
-</script>
+  <!-- Tipográfia & Strukturált Adatok -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-<!-- CSABAU KOMPLEX - Lebegő Hívássáv Stílusok -->
-<style>
-  :root {
-    --ck-obsidian: #0C0D0E;
-    --ck-basalt: #1B1D20;
-    --ck-brass: #D4AF37;
-    --ck-brass-hover: #C5A059;
-    --ck-chalk: #F5F4F0;
-    --ck-gray: #8E8A83;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "@id": "https://csabau-komplex.onrender.com/#organization",
+    "name": "Csabau Komplex Kft.",
+    "alternateName": "Csabau Komplex Hideg- és Melegburkolás, Felújítás",
+    "legalName": "Csabau Komplex Kft.",
+    "url": "https://csabau-komplex.onrender.com",
+    "telephone": "+36706637608",
+    "email": "miski.norbert@gmail.com",
+    "taxID": "27118629-2-05",
+    "founder": {
+      "@type": "Person",
+      "name": "Miski Norbert Szabolcs"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Bem u. 16.",
+      "addressLocality": "Szikszó",
+      "postalCode": "3800",
+      "addressRegion": "Borsod-Abaúj-Zemplén",
+      "addressCountry": "HU"
+    },
+    "areaServed": ["Miskolc", "Szikszó", "Borsod-Abaúj-Zemplén vármegye"],
+    "priceRange": "$$$"
   }
-
-  /* Mobil lebegő dokk konténer */
-  .ck-mobile-dock {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 9999;
-    padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px));
-    transform: translateY(110%);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ck-mobile-dock.is-active {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  @media (min-width: 1024px) {
-    .ck-mobile-dock {
-      display: none !important;
-    }
-  }
-
-  .ck-dock-wrapper {
-    width: 100%;
-    max-width: 440px;
-    background: rgba(27, 29, 32, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(142, 138, 131, 0.35);
-    padding: 8px;
-    display: flex;
-    gap: 8px;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
-  }
-
-  .ck-btn-call {
-    flex: 1.1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background: var(--ck-brass);
-    color: var(--ck-obsidian);
-    text-decoration: none;
-    padding: 12px 10px;
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: background 0.2s ease, transform 0.1s ease;
-  }
-
-  .ck-btn-call:active {
-    transform: scale(0.98);
-    background: var(--ck-brass-hover);
-  }
-
-  .ck-btn-quote {
-    flex: 0.9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    background: var(--ck-obsidian);
-    color: var(--ck-chalk);
-    border: 1px solid rgba(142, 138, 131, 0.4);
-    text-decoration: none;
-    padding: 12px 10px;
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    transition: background 0.2s ease, border-color 0.2s ease;
-  }
-
-  .ck-btn-quote:active {
-    background: #18191b;
-    border-color: var(--ck-brass);
-  }
-
-  .ck-dock-subtext {
-    margin-top: 6px;
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ck-gray);
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .ck-badge-dot {
-    width: 5px;
-    height: 5px;
-    background: var(--ck-brass);
-    border-radius: 50%;
-    display: inline-block;
-  }
-</style>
+  </script>
 </head>
 <body>
 
@@ -968,7 +1097,7 @@
           <span>Projektmenedzser:</span>
           <a href="tel:+36706637608">06 70 663 7608</a>
         </div>
-        <a href="#ajanlat" class="btn btn-accent">Ajánlatkérés</a>
+        <a href="#kalkulator" class="btn btn-accent">Ajánlatkérés</a>
       </div>
     </div>
   </header>
@@ -981,7 +1110,7 @@
         <h1>Otthonfelújítás és belsőépítészet megbízható kezekben.</h1>
         <p>Szobafestés, szárazépítés, burkolás, design akusztikus falpanelek és moduláris R-tile burkolatok kivitelezése Szikszón és térségében.</p>
         <div class="hero-actions">
-          <a href="#ajanlat" class="btn btn-accent">Ingyenes felmérést kérek</a>
+          <a href="#kalkulator" class="btn btn-accent">Azonnali árajánlat kalkulálása</a>
           <a href="#referenciak" class="btn btn-outline">Referenciák</a>
         </div>
       </div>
@@ -1078,42 +1207,148 @@
     </div>
   </section>
 
-  <!-- Árkalkulátor szekció -->
+  <!-- =========================================================
+       ÚJ, ESTIWISE-STÍLUSÚ INTERAKTÍV AJÁNLATKÉRŐ MODUL
+       ========================================================= -->
   <section id="kalkulator" class="section-padding" style="background-color: var(--bg-alt);">
     <div class="container">
       <div class="text-center">
-        <h2 class="section-title">Előzetes Kalkulátor</h2>
-        <p class="section-subtitle">Hivatalos TERC norma szerinti becsült összegek (12.800 Ft rezsióradíjjal kalkulálva):</p>
+        <div class="badge">Azonnali online becslés</div>
+        <h2 class="section-title">Interaktív Kivitelezési Kalkulátor</h2>
+        <p class="section-subtitle">Hivatalos TERC norma (12.800 Ft rezsióradíj) és valós felmérési adatok alapján számított élő árajánlat.</p>
       </div>
 
-      <div class="calc-container">
-        <div class="calc-grid">
-          <div>
-            <label><strong>Munka típusa:</strong></label>
-            <select id="calcType" class="form-control" style="margin-top:8px;" onchange="calculatePrice()">
-              <option value="festes">Festés és glettelés (TERC norma: 8.000 Ft/m²)</option>
-              <option value="szarazepites">Gipszkartonozás (TERC norma: 10.800 Ft/m²)</option>
-              <option value="burkolas">Hidegburkolás (TERC norma: 14.700 Ft/m²)</option>
-              <option value="falpanel">Akusztikus falpanel (TERC norma: 15.400 Ft/m²)</option>
-              <option value="rtile">R-tile padló (TERC norma: 6.200 Ft/m²)</option>
-            </select>
+      <div class="ew-calc-card">
+        <!-- Lépésjelző -->
+        <div class="ew-stepper">
+          <div class="ew-step active" id="ew-ind-1"><span>1</span> Szolgáltatás &amp; Méretek</div>
+          <div class="ew-step" id="ew-ind-2"><span>2</span> Kapcsolattartási adatok</div>
+          <div class="ew-step" id="ew-ind-3"><span>3</span> Részletes Árajánlat</div>
+        </div>
+
+        <!-- 1. LÉPÉS: VÁLASZTÁS ÉS CSÚSZKÁK -->
+        <div class="ew-step-content active" id="ew-step-1">
+          <label class="ew-section-label">1. Válassza ki a tervezett munkát:</label>
+          <div class="ew-services-grid">
+            <div class="ew-choice-card selected" data-service="Szobafestés & Mázolás" data-rate="8000">
+              <strong>Festés &amp; Mázolás</strong>
+              <span>Glettelés, csiszolás, festés (8.000 Ft/m²)</span>
+            </div>
+            <div class="ew-choice-card" data-service="Szárazépítés & Gipszkarton" data-rate="10800">
+              <strong>Gipszkartonozás</strong>
+              <span>Válaszfalak, dobozolások (10.800 Ft/m²)</span>
+            </div>
+            <div class="ew-choice-card" data-service="Hideg- és Melegburkolás" data-rate="14700">
+              <strong>Hidegburkolás</strong>
+              <span>Greslap, csempe, szintbeáll. (14.700 Ft/m²)</span>
+            </div>
+            <div class="ew-choice-card" data-service="Design Akusztikus Falpanel" data-rate="15400">
+              <strong>Akusztikus panel</strong>
+              <span>Fa lamellás design panelek (15.400 Ft/m²)</span>
+            </div>
+            <div class="ew-choice-card" data-service="Moduláris R-Tile Burkolat" data-rate="6200">
+              <strong>R-Tile PVC padló</strong>
+              <span>Ipari és garázsburkolás (6.200 Ft/m²)</span>
+            </div>
           </div>
-          <div>
-            <label><strong>Becsült alapterület:</strong> <span id="areaVal" style="color:var(--accent); font-weight:700;">45</span> m²</label>
-            <input type="range" id="calcArea" class="calc-range" min="10" max="250" value="45" oninput="document.getElementById('areaVal').innerText = this.value; calculatePrice();" />
+
+          <div class="ew-slider-box">
+            <div class="ew-slider-head">
+              <span>Becsült felület nagysága:</span>
+              <span class="ew-slider-val"><span id="ew-area-display">45</span> m²</span>
+            </div>
+            <input type="range" id="ew-area-range" min="10" max="250" step="5" value="45" />
+          </div>
+
+          <label class="ew-section-label">2. Kiegészítő technológiai opciók (Opcionális extrák):</label>
+          <div class="ew-addons-list">
+            <label class="ew-addon-item">
+              <input type="checkbox" id="ew-opt-premium" data-unit="1500" />
+              <span>Prémium anyaghasználat (mosható falfesték / flexibilis S1 ragasztó) (+1.500 Ft/m²)</span>
+            </label>
+            <label class="ew-addon-item">
+              <input type="checkbox" id="ew-opt-waterproof" data-unit="2500" />
+              <span>Kenhető 2-rétegű vízszigetelés hajlaterősítő szalaggal (+2.500 Ft/m²)</span>
+            </label>
+            <label class="ew-addon-item">
+              <input type="checkbox" id="ew-opt-led" data-fixed="45000" />
+              <span>Rejtett indirekt LED fénycsatorna vagy fali fülke kialakítása (egyösszegű +45.000 Ft)</span>
+            </label>
+          </div>
+
+          <div class="ew-btn-row">
+            <button type="button" class="btn btn-accent" id="ew-btn-step1-next">Tovább az ajánlat megtekintéséhez →</button>
           </div>
         </div>
 
-        <div class="calc-result-box">
-          <div style="font-size:0.9rem; color:var(--text-muted); margin-bottom:4px;">Irányadó becsült összeg:</div>
-          <div class="calc-price" id="totalPrice">360 000 Ft-tól</div>
-          <div style="font-size:0.82rem; color:var(--text-muted); margin-top:8px;">*A kalkuláció tájékoztató jellegű, a pontos végösszeg a felmérés után készülő tételes ajánlatban szerepel.</div>
+        <!-- 2. LÉPÉS: LEAD GATE -->
+        <div class="ew-step-content" id="ew-step-2">
+          <div class="ew-gate-box">
+            <h3>Hová küldhetjük a részletes tételes árajánlatot?</h3>
+            <p>Kérjük adja meg nevét és elérhetőségét az azonnali kalkuláció megnyitásához és a felmérési egyeztetéshez.</p>
+            <div class="ew-gate-inputs">
+              <input type="text" id="ew-lead-name" placeholder="Teljes név *" required />
+              <input type="tel" id="ew-lead-phone" placeholder="Telefonszám (pl. 06 30 123 4567) *" required />
+              <input type="email" id="ew-lead-email" placeholder="E-mail cím *" required />
+              <input type="text" id="ew-lead-city" placeholder="Település (pl. Szikszó, Miskolc)" />
+            </div>
+            <p class="ew-gate-privacy">Az adatok megadásával hozzájárul, hogy a Csabau Komplex Kft. projektmenedzsere felvegye Önnel a kapcsolatot a kalkulációval kapcsolatban.</p>
+            <div class="ew-btn-row">
+              <button type="button" class="btn btn-outline" id="ew-btn-step2-back" style="color:var(--primary); border-color:var(--border);">← Vissza a paraméterekhez</button>
+              <button type="button" class="btn btn-accent" id="ew-btn-step2-next">Árajánlat megnyitása &amp; Elküldés</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. LÉPÉS: EREDMÉNY ÉS ÖSSZEGZÉS -->
+        <div class="ew-step-content" id="ew-step-3">
+          <div class="ew-result-box">
+            <div class="ew-result-status">✓ Előzetes ajánlat sikeresen legenerálva!</div>
+            <h3 style="font-size: 1.45rem; color: var(--primary); margin-bottom: 6px;">Kivitelezési Költségbecslés</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem;">Az Ön által megadott felmérés alapján összeállított kalkuláció:</p>
+
+            <div class="ew-summary-table">
+              <div class="ew-table-row">
+                <span>Választott munkafázis:</span>
+                <strong id="ew-res-service">Szobafestés &amp; Mázolás</strong>
+              </div>
+              <div class="ew-table-row">
+                <span>Számított felület:</span>
+                <strong id="ew-res-area">45 m²</strong>
+              </div>
+              <div class="ew-table-row">
+                <span>Kiválasztott technológiai extrák:</span>
+                <strong id="ew-res-addons">Nincs extra kijelölve</strong>
+              </div>
+              <div class="ew-table-row">
+                <span>Becsült nettó munkadíj és alapanyagok:</span>
+                <strong id="ew-res-net">360 000 Ft</strong>
+              </div>
+              <div class="ew-table-row">
+                <span>ÁFA tartalom (27%):</span>
+                <strong id="ew-res-vat">97 200 Ft</strong>
+              </div>
+              <div class="ew-table-row highlight-total">
+                <span>Irányadó bruttó végösszeg:</span>
+                <strong id="ew-res-gross">457 200 Ft</strong>
+              </div>
+            </div>
+
+            <p class="ew-disclaimer-note">
+              *A fenti összeg hivatalos TERC norma (12.800 Ft rezsióradíj) és a megadott méretek alapján számított irányár. A végleges, garanciális ajánlatot a helyszíni felmérést követően rögzítjük.
+            </p>
+
+            <div class="ew-btn-row-final">
+              <button type="button" class="btn btn-outline" id="ew-btn-recalc" style="color:var(--primary); border-color:var(--border);">↺ Újraszámolás / Módosítás</button>
+              <a href="tel:+36203523981" class="btn btn-accent">📞 Telefonos egyeztetés: 06 20 352 3981</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- REFERENCIA GALÉRIA SZEKCIÓ (AZ EREDETI PRÉMIUM DIZÁJNBAN) -->
+  <!-- REFERENCIA GALÉRIA SZEKCIÓ -->
   <section id="referenciak" class="section-padding">
     <div class="container">
       <div class="text-center">
@@ -1122,7 +1357,6 @@
         <p class="section-subtitle">Válogatás a Csabau Komplex Kft. legújabb belsőépítészeti, burkolási és kültéri projektjeiből.</p>
       </div>
 
-      <!-- Kategóriaszűrők az eredeti arany-kék stílusban -->
       <div class="gallery-filter-wrap">
         <button class="filter-btn active" onclick="filterGallery(event, 'all')">Összes munka</button>
         <button class="filter-btn" onclick="filterGallery(event, 'burkolas')">Hidegburkolás &amp; Fürdő</button>
@@ -1131,9 +1365,7 @@
         <button class="filter-btn" onclick="filterGallery(event, 'kulter')">Kültér &amp; Kertépítés</button>
       </div>
 
-      <!-- Kártyák rácsa -->
       <div class="gallery-cards-grid">
-
         <!-- 1. Luxus kád arany profillal -->
         <div class="gallery-card" data-category="burkolas" onclick="openLightbox('IMG_20230522_091132.jpg')">
           <div class="gallery-img-box">
@@ -1277,13 +1509,12 @@
             <p>Csiszolt felületek többrétegű nemesfa lazúrozással, időjárásálló védelemmel.</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- Kapcsolat & Ajánlatkérés -->
-  <section id="ajanlat" class="section-padding" style="background-color: var(--bg-alt);">
+  <!-- Hagyományos Kapcsolatfelvétel & Üzenetküldés -->
+  <section id="ajanlat" class="section-padding" style="background-color: #ffffff;">
     <div class="container">
       <div class="contact-grid">
         <div class="contact-info-panel">
@@ -1416,22 +1647,138 @@
     </div>
   </footer>
 
+  <!-- Mobil alsó lebegő sáv -->
+  <div id="csabauDock" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: #123048; padding: 10px 14px; display: flex; gap: 10px; box-shadow: 0 -4px 15px rgba(0,0,0,0.25);">
+    <a href="tel:+36706637608" style="flex: 1; background: #eab308; color: #123048; text-decoration: none; padding: 11px 8px; text-align: center; font-weight: bold; font-size: 13px; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+      <span>📞 06 70 663 7608</span>
+    </a>
+    <a href="#kalkulator" style="flex: 1; background: #1c4568; color: #ffffff; text-decoration: none; padding: 11px 8px; text-align: center; font-weight: bold; font-size: 13px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">
+      <span>Ajánlatkérés →</span>
+    </a>
+  </div>
+
   <!-- Szkriptek -->
   <script>
-    // 1. Eredeti Kalkulátor Számítás
-    function calculatePrice() {
-      const type = document.getElementById('calcType').value;
-      const area = parseInt(document.getElementById('calcArea').value, 10);
-      
-      let rate = 8000;
-      if (type === 'szarazepites') rate = 10800;
-      if (type === 'burkolas') rate = 14700;
-      if (type === 'falpanel') rate = 15400;
-      if (type === 'rtile') rate = 6200;
+    // 1. EstiWise-típusú Interaktív Kalkulátor Logika
+    let ewState = {
+      serviceName: "Szobafestés & Mázolás",
+      baseRate: 8000,
+      area: 45
+    };
 
-      const sum = (area * rate).toLocaleString('hu-HU');
-      document.getElementById('totalPrice').innerText = sum + ' Ft-tól';
-    }
+    const ewAreaRange = document.getElementById('ew-area-range');
+    const ewAreaDisplay = document.getElementById('ew-area-display');
+
+    // Szolgáltatáskártya kiválasztása
+    document.querySelectorAll('.ew-choice-card').forEach(card => {
+      card.addEventListener('click', function () {
+        document.querySelectorAll('.ew-choice-card').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+        ewState.serviceName = this.getAttribute('data-service');
+        ewState.baseRate = parseInt(this.getAttribute('data-rate'), 10);
+      });
+    });
+
+    // Felület csúszka eseménykezelője
+    ewAreaRange.addEventListener('input', function () {
+      ewState.area = parseInt(this.value, 10);
+      ewAreaDisplay.textContent = this.value;
+    });
+
+    // Léptetés az 1. lépésből a 2. lépésbe
+    document.getElementById('ew-btn-step1-next').addEventListener('click', function () {
+      document.getElementById('ew-step-1').classList.remove('active');
+      document.getElementById('ew-step-2').classList.add('active');
+      document.getElementById('ew-ind-2').classList.add('active');
+      document.getElementById('kalkulator').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Visszalépés a 2. lépésből az 1. lépésbe
+    document.getElementById('ew-btn-step2-back').addEventListener('click', function () {
+      document.getElementById('ew-step-2').classList.remove('active');
+      document.getElementById('ew-step-1').classList.add('active');
+      document.getElementById('ew-ind-2').classList.remove('active');
+    });
+
+    // Újraszámolás / Módosítás a 3. lépésből
+    document.getElementById('ew-btn-recalc').addEventListener('click', function () {
+      document.getElementById('ew-step-3').classList.remove('active');
+      document.getElementById('ew-step-1').classList.add('active');
+      document.getElementById('ew-ind-2').classList.remove('active');
+      document.getElementById('ew-ind-3').classList.remove('active');
+      document.getElementById('kalkulator').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // 2. lépésből a 3. lépésbe: Validáció, Számolás és Automatikus levélküldés
+    document.getElementById('ew-btn-step2-next').addEventListener('click', function () {
+      const name = document.getElementById('ew-lead-name').value.trim();
+      const phone = document.getElementById('ew-lead-phone').value.trim();
+      const email = document.getElementById('ew-lead-email').value.trim();
+      const city = document.getElementById('ew-lead-city').value.trim();
+
+      if (!name || !phone || !email) {
+        alert("Kérjük adja meg a nevét, telefonszámát és e-mail címét a kalkuláció megtekintéséhez!");
+        return;
+      }
+
+      // Kiegészítő felárak kalkulációja
+      let extraPerM2 = 0;
+      let fixedExtra = 0;
+      let chosenAddons = [];
+
+      if (document.getElementById('ew-opt-premium').checked) {
+        extraPerM2 += 1500;
+        chosenAddons.push("Prémium anyaghasználat");
+      }
+      if (document.getElementById('ew-opt-waterproof').checked) {
+        extraPerM2 += 2500;
+        chosenAddons.push("Kenhető vízszigetelés");
+      }
+      if (document.getElementById('ew-opt-led').checked) {
+        fixedExtra += 45000;
+        chosenAddons.push("LED fénycsatorna / fali fülke");
+      }
+
+      // Végösszeg számítása
+      const netTotal = ((ewState.baseRate + extraPerM2) * ewState.area) + fixedExtra;
+      const vat = Math.round(netTotal * 0.27);
+      const grossTotal = netTotal + vat;
+
+      // Adatok beírása az összegzőbe
+      document.getElementById('ew-res-service').textContent = ewState.serviceName;
+      document.getElementById('ew-res-area').textContent = ewState.area + " m²";
+      document.getElementById('ew-res-addons').textContent = chosenAddons.length > 0 ? chosenAddons.join(", ") : "Nincs kijelölve";
+      document.getElementById('ew-res-net').textContent = netTotal.toLocaleString('hu-HU') + " Ft";
+      document.getElementById('ew-res-vat').textContent = vat.toLocaleString('hu-HU') + " Ft";
+      document.getElementById('ew-res-gross').textContent = grossTotal.toLocaleString('hu-HU') + " Ft";
+
+      // Váltás a 3. lépésre
+      document.getElementById('ew-step-2').classList.remove('active');
+      document.getElementById('ew-step-3').classList.add('active');
+      document.getElementById('ew-ind-3').classList.add('active');
+      document.getElementById('kalkulator').scrollIntoView({ behavior: 'smooth' });
+
+      // AUTOMATIKUS E-MAIL KÜLDÉSE A FORMSPREE-N KERESZTÜL:
+      // Cseréld ki a saját Formspree kódodra: https://formspree.io/f/SAJAT_KODOD
+      fetch('https://formspree.io/f/xrppylrv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          "Név": name,
+          "Telefonszám": phone,
+          "Email": email,
+          "Település": city || "Nem adott meg",
+          "Kiválasztott munka": ewState.serviceName,
+          "Felület": ewState.area + " m²",
+          "Kért extrák": chosenAddons.length > 0 ? chosenAddons.join(", ") : "Nincs",
+          "Nettó összeg": netTotal.toLocaleString('hu-HU') + " Ft",
+          "Bruttó összeg": grossTotal.toLocaleString('hu-HU') + " Ft"
+        })
+      }).catch(err => console.error("Hiba az értesítés küldésekor:", err));
+    });
 
     // 2. Galéria Kategóriaszűrés
     function filterGallery(e, category) {
@@ -1461,44 +1808,5 @@
       document.getElementById('lightboxModal').classList.remove('active');
     }
   </script>
-<!-- CSABAU KOMPLEX - Az oldalhoz illeszkedő mobil sáv -->
-<div id="csabauDock" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999; background: #123048; padding: 10px 14px; display: flex; gap: 10px; box-shadow: 0 -4px 15px rgba(0,0,0,0.25);">
-  <a href="tel:+36706637608" style="flex: 1; background: #eab308; color: #123048; text-decoration: none; padding: 11px 8px; text-align: center; font-weight: bold; font-size: 13px; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 6px;">
-    <span>📞 06 70 663 7608</span>
-  </a>
-  <a href="#ajanlat" style="flex: 1; background: #1c4568; color: #ffffff; text-decoration: none; padding: 11px 8px; text-align: center; font-weight: bold; font-size: 13px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;">
-    <span>Ajánlatkérés →</span>
-  </a>
-</div>
-
-<script>
-  // Görgetésfigyelő: 100px görgetés után finoman beúszik a sáv
-  (function() {
-    var dock = document.getElementById('ckMobileDock');
-    var callBtn = document.getElementById('ckCallBtn');
-
-    if (!dock) return;
-
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 100) {
-        dock.classList.add('is-active');
-      } else {
-        dock.classList.remove('is-active');
-      }
-    }, { passive: true });
-
-    // Hívás konverzió mérése (Google Analytics ha be van kötve)
-    if (callBtn) {
-      callBtn.addEventListener('click', function() {
-        if (typeof gtag === 'function') {
-          gtag('event', 'click_to_call', {
-            'event_category': 'Konverzió',
-            'event_label': '+36706637608'
-          });
-        }
-      });
-    }
-  })();
-</script>
 </body>
 </html>
