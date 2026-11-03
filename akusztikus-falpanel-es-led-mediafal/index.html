@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="hu" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akusztikus falpanelek és LED médiafalak építése | CSABAU KOMPLEX KFT.</title>
+  <meta name="description" content="Fa lamellás akusztikai falpanelek, süllyesztett LED világítás és egyedi gipszkarton médiafalak kivitelezése Szikszón, Miskolcon és térségében." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #123048;
+      --primary-light: #1c4568;
+      --primary-dark: #0a1c2a;
+      --accent: #d4a359;
+      --accent-hover: #b8863b;
+      --surface: #ffffff;
+      --bg-alt: #f4f7f9;
+      --text: #212529;
+      --text-muted: #5f6c7b;
+      --border: #e2e8f0;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 4px 12px rgba(18, 48, 72, 0.06);
+      --shadow-md: 0 12px 28px rgba(18, 48, 72, 0.1);
+      --shadow-lg: 0 20px 40px rgba(18, 48, 72, 0.14);
+      --container: 1000px;
+      --transition: all 0.28s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--text);
+      background-color: #ffffff;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1.3;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 50px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(212, 163, 89, 0.35);
+    }
+
+    .btn-accent:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(212, 163, 89, 0.45);
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.98);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 84px;
+    }
+
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-box-square {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      border: 2px solid var(--accent);
+      overflow: hidden;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .logo-box-square img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text .name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .brand-text .sub {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-top: 3px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .back-link {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    .article-hero {
+      padding: 60px 0 40px;
+      background: linear-gradient(180deg, var(--bg-alt) 0%, #ffffff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(212, 163, 89, 0.15);
+      border: 1px solid var(--accent);
+      border-radius: 30px;
+      font-size: 0.78rem;
+      color: var(--accent-hover);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 2.3rem;
+      color: var(--primary);
+      margin-bottom: 18px;
+      line-height: 1.25;
+    }
+
+    .article-lead {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      border-left: 4px solid var(--accent);
+      padding-left: 18px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .article-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .article-body {
+      padding: 50px 0 80px;
+    }
+
+    .content-block {
+      margin-bottom: 44px;
+    }
+
+    .content-block h2 {
+      font-size: 1.65rem;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+
+    .content-block p {
+      font-size: 1.02rem;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+
+    .tech-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 22px;
+    }
+
+    .tech-card h4 {
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .tech-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .callout-box {
+      background: var(--bg-alt);
+      border-left: 4px solid var(--primary);
+      padding: 22px 24px;
+      border-radius: var(--radius-sm);
+      margin: 24px 0;
+    }
+
+    .callout-box h4 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .callout-box p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 30px 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+      background: #ffffff;
+      min-width: 620px;
+    }
+
+    th, td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background-color: var(--primary);
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+    }
+
+    th.highlight-col {
+      background-color: var(--primary-light);
+      color: var(--accent);
+    }
+
+    td.highlight-col {
+      background-color: rgba(212, 163, 89, 0.05);
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .cta-article-card {
+      background: linear-gradient(145deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 44px 36px;
+      box-shadow: var(--shadow-lg);
+      margin-top: 60px;
+    }
+
+    .cta-article-card h3 {
+      color: #ffffff;
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .cta-article-card p {
+      color: #c9d8e5;
+      font-size: 1rem;
+      margin-bottom: 28px;
+      max-width: 650px;
+    }
+
+    .article-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .article-form input, .article-form select, .article-form textarea {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+
+    .article-form input::placeholder, .article-form textarea::placeholder {
+      color: #94a3b8;
+    }
+
+    .article-form input:focus, .article-form select:focus, .article-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .article-form select option {
+      background: var(--primary-dark);
+      color: #ffffff;
+    }
+
+    .article-form textarea {
+      grid-column: span 2;
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .article-form button {
+      grid-column: span 2;
+      width: 100%;
+    }
+
+    .success-alert {
+      display: none;
+      background: rgba(46, 125, 50, 0.2);
+      border: 1px solid #4caf50;
+      color: #a5d6a7;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      margin-top: 16px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    footer {
+      background: var(--primary-dark);
+      color: #a0aec0;
+      padding: 50px 0 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.88rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-copy {
+      text-align: center;
+      padding-top: 20px;
+      color: #718096;
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+      .article-title { font-size: 1.85rem; }
+      .article-form { grid-template-columns: 1fr; }
+      .article-form textarea, .article-form button { grid-column: span 1; }
+      .footer-content { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fejléc -->
+  <header>
+    <div class="container nav-wrap">
+      <a href="/" class="brand-logo-wrap">
+        <div class="logo-box-square">
+          <img src="/logo.png" alt="CSABAU Logó" onerror="this.onerror=null; this.src='/logo.jpg';" />
+        </div>
+        <div class="brand-text">
+          <span class="name">CSABAU</span>
+          <span class="sub">KOMPLEX KFT.</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="/" class="back-link">
+          ← Vissza a főoldalra
+        </a>
+        <a href="#kalkulacio" class="btn btn-accent" style="padding: 10px 22px; font-size: 0.85rem;">
+          Ajánlatkérés
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cikk Fejléc -->
+  <div class="article-hero">
+    <div class="container">
+      <div class="badge-gold">Modern Belsőépítészet &amp; Fénytechnika</div>
+      <h1 class="article-title">Akusztikus falpanelek és LED médiafalak: A modern nappali belsőépítészete</h1>
+      <p class="article-lead">
+        A modern, letisztult enteriőrök egyik legnagyobb kihívása a kongó, visszhangos tér és az unalmas, sík falfelületek. A fa lamellás akusztikai falpanelek és az egyedileg épített, rejtett LED-es gipszkarton médiafalak ötvözik a stúdióminőségű hangzást a prémium látványvilággal.
+      </p>
+      <div class="article-meta">
+        <span>Szerző: <strong>Csoma Csaba &amp; Miski Norbert</strong></span>
+        <span>•</span>
+        <span>Olvasási idő: 5 perc</span>
+        <span>•</span>
+        <span>Szikszó, Miskolc és Borsod megye</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cikk Tartalom -->
+  <article class="article-body">
+    <div class="container">
+      
+      <div class="content-block">
+        <h2>1. Nem csak dísz: Hogyan javítja az akusztikai falpanel a komfortérzetet?</h2>
+        <p>
+          A mai otthonokban a nagyméretű hidegburkolatok, a minimál bútorzat és a hatalmas ablakfelületek miatt a hangok visszaverődnek a kemény felületekről. Az eredmény: zavaró visszhang, fárasztó háttérzaj és tompa beszédhang a tévéből.
+        </p>
+        <p>
+          A minőségi akusztikus lamella panelek lényege a réteges szerkezet: a valódi furnérozott fa vagy MDF lamellák mögött egy <strong>nagy sűrűségű, újrahasznosított akusztikai filc réteg</strong> helyezkedik el, amely elnyeli a visszhangokat (A-osztályú hangelnyelés).
+        </p>
+        
+        <div class="callout-box">
+          <h4>Kettős hatás egyetlen beépítéssel</h4>
+          <p>
+            Miközben a falpanel megszünteti a kongást a nappaliban vagy a házimozi szobában, a függőleges fa bordázat optikailag nyújtja a teret és meleg, természetes eleganciát kölcsönöz a szobának.
+          </p>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2>2. A gipszkarton médiafal: Kábelmentes, süllyesztett TV-zónák</h2>
+        <p>
+          Egy modern nappaliban a lógó tápkábelek, HDMI vezetékek és a polcra zsúfolt set-top boxok tönkreteszik az összképet. A szárazépítészeti gipszkarton dobozolással a komplett technikát a fal mögé rejtjük.
+        </p>
+
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h4>Rejtett kábelcsatornák</h4>
+            <p>Minden vezeték a gipszkarton előtétfalban fut, közvetlen szerviznyílással a hifi, a játékkonzol és a tévé mögött.</p>
+          </div>
+          <div class="tech-card">
+            <h4>Indirekt súrlófény (LED profilok)</h4>
+            <p>A fal síkjából kiugró dobozolás mögé szerelt rejtett melegfehér vagy RGBW LED szalagok lágy hangulatfényt adnak este anélkül, hogy a tévéképernyőre tükröződnének.</p>
+          </div>
+          <div class="tech-card">
+            <h4>Süllyesztett fali fülkék</h4>
+            <p>A médiafal két oldalán gipszkartonból épített, megvilágított beugró fülkék dekorációs elemeknek, szobroknak vagy könyveknek.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2>3. Miért a Csabau Komplex-et válaszd a médiafalad megépítéséhez?</h2>
+        <p>
+          A médiafalak és lamellás felületek kivitelezése milliméteres pontosságot igényel: ha a gipszkarton nem tökéletesen függőleges, a lamellák illesztése elcsúszik; ha a glettelés nem pormentes, a LED súrlófény minden apró egyenetlenséget kíméletlenül megvilágít.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Kivitelezési részlet</th>
+                <th class="highlight-col">Csabau Komplex Technológia</th>
+                <th>Átlagos barkács / szaki munka</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Glettelés minősége</strong></td>
+                <td class="highlight-col">Q4-es prémium tükörglettelés, LED súrlófényre optimalizálva.</td>
+                <td>Alap glettelés, ahol az oldalfényben meglátszanak a sávok és hibák.</td>
+              </tr>
+              <tr>
+                <td><strong>Profilok és vágások</strong></td>
+                <td class="highlight-col">Rejtett alumínium hűtőprofilok opál búrával (nincs pontfény-hatás).</td>
+                <td>Közvetlenül felragasztott LED szalag, ami gyorsan túlmelegszik és kiég.</td>
+              </tr>
+              <tr>
+                <td><strong>Lamellák rögzítése</strong></td>
+                <td class="highlight-col">Fekete csavarozás vagy nagy szilárdságú hibrid ragasztás síkba húzva.</td>
+                <td>Hullámos felületre ragasztott, elváló és ferdén futó lécek.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Ajánlatkérő Űrlap -->
+      <div id="kalkulacio" class="cta-article-card">
+        <h3>Egyedi nappalit szeretnél? Kérj látványtervezést és felmérést!</h3>
+        <p>
+          Akusztikus fa falpanelek beépítése, komplett LED médiafalak és gipszkarton álmennyezetek precíz kivitelezése Szikszón és környékén. Töltsd ki az űrlapot az ingyenes felmérésért!
+        </p>
+
+        <form class="article-form" id="articleQuoteForm" onsubmit="handleArticleSubmit(event)">
+          <input type="text" id="artName" placeholder="Teljes név *" required />
+          <input type="tel" id="artPhone" placeholder="Telefonszám *" required />
+          <input type="email" id="artEmail" placeholder="E-mail cím *" required />
+          <input type="text" id="artCity" placeholder="Település (pl. Szikszó, Miskolc)" />
+          
+          <select id="artService" style="grid-column: span 2;">
+            <option value="Design akusztikus falpanel & Médiafal">Design akusztikus falpanel &amp; LED médiafal</option>
+            <option value="Szárazépítés & Gipszkarton mennyezet">Egyedi gipszkarton dobozolás és álmennyezet</option>
+            <option value="Szobafestés & Mázolás">Q4-es prémium glettelés és szobafestés</option>
+            <option value="Komplett lakásfelújítás / Generál">Teljes belsőépítészeti felújítás</option>
+          </select>
+
+          <textarea id="artNotes" placeholder="Mekkora falfelületben gondolkodsz, van-e már elképzelés a LED-ről vagy a panelekről?"></textarea>
+          
+          <button type="submit" class="btn btn-accent" id="artSubmitBtn">
+            Médiafal felmérés és árajánlat kérése →
+          </button>
+        </form>
+
+        <div class="success-alert" id="artSuccess">
+          ✓ Köszönjük érdeklődését! Munkatársunk 24 órán belül felveszi Önnel a kapcsolatot a felmérés és minták egyeztetéséhez.
+        </div>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- Lábléc -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="brand-logo-wrap">
+          <div class="logo-box-square" style="width:42px; height:42px;">
+            <img src="/logo.png" alt="CSABAU Logó" onerror="this.onerror=null; this.src='/logo.jpg';" />
+          </div>
+          <div class="brand-text">
+            <span class="name" style="color:#ffffff;">CSABAU</span>
+            <span class="sub">KOMPLEX KFT.</span>
+          </div>
+        </div>
+
+        <div>
+          <span>Székhely: 3800 Szikszó, Bem J. u. 16. | Telefon: 06 20 352 3981</span>
+        </div>
+      </div>
+
+      <div class="footer-copy">
+        &copy; 2026 CSABAU KOMPLEX KFT. Minden jog fenntartva. | <a href="/" style="color:var(--accent);">Vissza a kezdőlapra</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (typeof emailjs !== 'undefined') {
+      try {
+        emailjs.init("zKQxWxFvpp6jfU2Ls");
+      } catch (e) {
+        console.warn("EmailJS inicializálási hiba:", e);
+      }
+    }
+
+    async function handleArticleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('artSubmitBtn');
+      const origText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerText = "Küldés folyamatban...";
+
+      const emailParams = {
+        user_name: document.getElementById('artName').value.trim(),
+        user_phone: document.getElementById('artPhone').value.trim(),
+        user_email: document.getElementById('artEmail').value.trim(),
+        user_city: document.getElementById('artCity').value.trim() || "Nem adott meg",
+        service_name: document.getElementById('artService').value,
+        area: "Cikk ajánlatkérés (Akusztikus falpanel & Médiafal)",
+        addons: document.getElementById('artNotes').value.trim() || "Nincs megjegyzés",
+        net_total: "Egyedi felmérés alapján",
+        gross_total: "Egyedi felmérés alapján"
+      };
+
+      try {
+        if (typeof emailjs !== 'undefined') {
+          await emailjs.send("service_2r64fym", "template_qelblua", emailParams, "zKQxWxFvpp6jfU2Ls");
+        }
+        document.getElementById('articleQuoteForm').style.display = 'none';
+        document.getElementById('artSuccess').style.display = 'block';
+      } catch (err) {
+        alert("Hiba történt az űrlap küldésekor. Kérjük hívjon minket közvetlenül: 06 20 352 3981");
+        btn.disabled = false;
+        btn.innerHTML = origText;
+      }
+    }
+  </script>
+</body>
+</html>
